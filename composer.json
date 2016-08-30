@@ -1,0 +1,23 @@
+{
+    "name": "sciarcinski/laravel-authorize",
+    "description": "",
+    "keywords": ["authorize", "laravel", "laravel 5"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sławomir Ciarciński",
+            "email": "slawgos@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sciarcinski\\LaravelAuthorize\\": "src/"
+        },
+        "files": [
+            "src/Sciarcinski/LaravelAuthorize/functions.php"
+        ]
+    }
+}
