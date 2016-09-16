@@ -2,7 +2,7 @@
 
 namespace Sciarcinski\LaravelAuthorize\Traits;
 
-trait AccessUserTrait
+trait AccessTrait
 {
     /**
      * User has single role
@@ -12,6 +12,14 @@ trait AccessUserTrait
     public function role()
     {
         return $this->belongsTo(config('access.role'));
+    }
+    
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role->slug;
     }
     
     /**
