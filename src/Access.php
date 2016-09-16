@@ -27,8 +27,8 @@ class Access
     
     /**
      * Is user super admin
-     * 
-     * @return boolean
+     *
+     * @return bool
      */
     public function isSuperAdmin()
     {
@@ -41,10 +41,10 @@ class Access
     
     /**
      * Has user a role
-     * 
+     *
      * @param $role
-     * 
-     * @return boolean
+     *
+     * @return bool
      */
     public function hasRole($role)
     {
@@ -57,10 +57,10 @@ class Access
     
     /**
      * Has user a permission
-     * 
+     *
      * @param $permission
-     * 
-     * @return boolean
+     *
+     * @return bool
      */
     public function hasPermission($permission)
     {
@@ -73,8 +73,8 @@ class Access
 
     /**
      * Has user
-     * 
-     * @return boolean
+     *
+     * @return bool
      */
     public function hasUser()
     {

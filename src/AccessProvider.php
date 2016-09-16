@@ -24,7 +24,7 @@ class AccessProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('access', function($app) {
+        $this->app->singleton('access', function ($app) {
             return new Access($app);
         });
     }
@@ -34,24 +34,24 @@ class AccessProvider extends ServiceProvider
      */
     protected function registerBlade()
     {
-        Blade::directive('role', function($arguments) {            
+        Blade::directive('role', function ($arguments) {
             return "<?php if (role{$arguments}): ?>";
         });
         
-        Blade::directive('roles', function($arguments) {            
+        Blade::directive('roles', function ($arguments) {
             return "<?php if (roles{$arguments}): ?>";
         });
         
-        Blade::directive('permission', function($arguments) {
+        Blade::directive('permission', function ($arguments) {
             return "<?php if (permission{$arguments}): ?>";
         });
         
-        Blade::directive('permissions', function($arguments) {
+        Blade::directive('permissions', function ($arguments) {
             return "<?php if (permissions{$arguments}): ?>";
         });
         
-        Blade::directive('endauth', function() {
-            return "<?php endif; ?>";
+        Blade::directive('endauth', function () {
+            return '<?php endif; ?>';
         });
     }
 }

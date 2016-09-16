@@ -15,9 +15,6 @@
     "autoload": {
         "psr-4": {
             "Sciarcinski\\LaravelAuthorize\\": "src/"
-        },
-        "files": [
-            "src/Sciarcinski/LaravelAuthorize/functions.php"
-        ]
+        }
     }
 }
