@@ -32,6 +32,7 @@ trait AccessTrait
     
     /**
      * @param $role
+     *
      * @return bool
      */
     public function hasRole($role)
@@ -47,14 +48,34 @@ trait AccessTrait
         return in_array($this->role->slug, $role);
     }
     
-    public function hasPermission($permission)
+    /**
+     * @param $permissions
+     *
+     * @return bool
+     */
+    public function hasPermission($permissions)
     {
         if ($this->isSuperAdmin()) {
             return true;
         }
         
-        if (!is_array($permission)) {
-            $permission = [$permission];
+        if (!is_array($permissions)) {
+            $permissions = [$permissions];
         }
+        
+        $authorized = false;
+        $available = config('access.permissions.roles.'.$this->role->slug, []);
+        
+        if (count($available) === 1 && $available[0] == '*') {
+            return true;
+        }
+        
+        foreach ($permissions as $permission) {
+            if (in_array($permission, $available)) {
+                $authorized = true;
+            }
+        }
+        
+        return $authorized;
     }
 }

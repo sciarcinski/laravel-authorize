@@ -5,12 +5,12 @@ namespace Sciarcinski\LaravelAuthorize\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class AccessPermission
+class Authorize
 {
     
     /** @var Guard */
     protected $auth;
-    
+
     /**
      * @param Guard $auth
      */
@@ -22,14 +22,14 @@ class AccessPermission
     /**
      * Handle an incoming request.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Closure $next
-     * @param  $roles
+     * @param \Illuminate\Http\Request $request
+     * @param Closure $next
+     *
      * @return mixed
      */
-    public function handle($request, Closure $next, $permissions)
+    public function handle($request, Closure $next)
     {
-        if ($this->auth->guest() || !$request->user()->permission($permissions)) {
+        if (!$this->auth->user()->hasPermission($request->route()->getName())) {
             abort(403);
         }
         

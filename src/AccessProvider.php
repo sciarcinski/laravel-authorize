@@ -15,6 +15,10 @@ class AccessProvider extends ServiceProvider
     public function boot()
     {
         $this->registerBlade();
+        
+        $this->publishes([
+            __DIR__.'/../config/access.php' => config_path('access.php'),
+        ]);
     }
     
     /**
@@ -24,6 +28,8 @@ class AccessProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__.'/../config/access.php', 'access');
+        
         $this->app->singleton('access', function ($app) {
             return new Access($app);
         });
@@ -35,23 +41,25 @@ class AccessProvider extends ServiceProvider
     protected function registerBlade()
     {
         Blade::directive('role', function ($arguments) {
-            return "<?php if (role{$arguments}): ?>";
-        });
-        
-        Blade::directive('roles', function ($arguments) {
-            return "<?php if (roles{$arguments}): ?>";
+            return "<?php if (Access::hasRole{$arguments}): ?>";
         });
         
         Blade::directive('permission', function ($arguments) {
-            return "<?php if (permission{$arguments}): ?>";
-        });
-        
-        Blade::directive('permissions', function ($arguments) {
-            return "<?php if (permissions{$arguments}): ?>";
+            return "<?php if (Access::hasPermission{$arguments}): ?>";
         });
         
         Blade::directive('endauth', function () {
             return '<?php endif; ?>';
         });
+    }
+    
+    /**
+     *  Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return ['access'];
     }
 }

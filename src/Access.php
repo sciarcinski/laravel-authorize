@@ -76,7 +76,7 @@ class Access
      *
      * @return bool
      */
-    public function hasUser()
+    protected function hasUser()
     {
         return !is_null($this->user());
     }
