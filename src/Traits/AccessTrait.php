@@ -45,7 +45,7 @@ trait AccessTrait
             $role = [$role];
         }
         
-        return in_array($this->role->slug, $role);
+        return in_array($this->getRole(), $role);
     }
     
     /**
@@ -64,7 +64,7 @@ trait AccessTrait
         }
         
         $authorized = false;
-        $available = config('access.permissions.roles.'.$this->role->slug, []);
+        $available = config('access.permissions.roles.'.$this->getRole(), []);
         
         if (count($available) === 1 && $available[0] == '*') {
             return true;
