@@ -5,7 +5,7 @@ namespace Sciarcinski\LaravelAuthorize\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Role
+class AccessRole
 {
     
     /** @var Guard */
