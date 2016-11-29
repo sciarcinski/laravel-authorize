@@ -41,11 +41,11 @@ class AccessProvider extends ServiceProvider
     protected function registerBlade()
     {
         Blade::directive('role', function ($arguments) {
-            return "<?php if (Access::hasRole{$arguments}): ?>";
+            return '<?php if (Access::hasRole('.rtrim(ltrim($arguments, '('), ')').')): ?>';
         });
         
         Blade::directive('permission', function ($arguments) {
-            return "<?php if (Access::hasPermission{$arguments}): ?>";
+            return '<?php if (Access::hasPermission('.rtrim(ltrim($arguments, '('), ')').')): ?>';
         });
         
         Blade::directive('endauth', function () {
