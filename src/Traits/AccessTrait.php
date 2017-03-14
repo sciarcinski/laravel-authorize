@@ -71,11 +71,38 @@ trait AccessTrait
         }
         
         foreach ($permissions as $permission) {
-            if (in_array($permission, $available)) {
+            if (
+                in_array($this->permissionAbilityMap($permission), $available) ||
+                in_array($permission, $available)
+            ) {
                 $authorized = true;
             }
         }
         
         return $authorized;
+    }
+    
+    /**
+     * @param string $permission
+     *
+     * @return string
+     */
+    private function permissionAbilityMap($permission)
+    {
+        $abilities = config('access.ability_map');
+        
+        if (empty($abilities)) {
+            return $permission;
+        }
+        
+        $permission = explode('.', $permission);
+        
+        if (count($permission) < 2) {
+            return implode('.', $permission);
+        }
+        
+        $last = strtr(array_pull($permission, count($permission)-1), $abilities);
+        
+        return implode('.', $permission) . '.' . $last;
     }
 }
