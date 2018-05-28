@@ -5,9 +5,8 @@ namespace Sciarcinski\LaravelAuthorize\Middleware;
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class AccessPermission
+class Permission
 {
-    
     /** @var Guard */
     protected $auth;
     
